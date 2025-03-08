@@ -8,7 +8,7 @@ npm ci
 npm run build
 cd ../
 
-server
+cd server
 npm ci
 npm run dev
 ```
