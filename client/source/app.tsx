@@ -1,9 +1,5 @@
 import React from 'react';
 
-export type AppProps = {
-  name: string;
-};
-
-export const App: React.FC<AppProps> = (props) => {
-  return <h1>Hello {props.name}!</h1>;
+export const App: React.FC = () => {
+  return <h1>Hello World!</h1>;
 };

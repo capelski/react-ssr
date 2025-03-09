@@ -5,4 +5,4 @@ import { App } from './app';
 const container = document.getElementById('app-placeholder')!;
 const root = createRoot(container);
 
-root.render(<App name="client" />);
+root.render(<App />);
