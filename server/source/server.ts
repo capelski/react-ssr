@@ -22,10 +22,12 @@ app.get('/api/user-names', async (_req, res) => {
 });
 
 app.use([/^\/$/, /^\/login\/?$/], async (req, res) => {
+  const userNames = await getUserNames();
+  const initialState = { loading: false, userNames };
   const appWithRouter = createElement(
     StaticRouter,
     { location: req.originalUrl },
-    createElement(App),
+    createElement(App, initialState),
   );
   const appHtml = renderToString(appWithRouter);
   const indexHtml = await readFile(resolve(__dirname, '..', 'static', 'index.html'), 'utf-8');

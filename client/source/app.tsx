@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Route, Routes } from 'react-router';
 
-const Home: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [userNames, setUserNames] = useState<string[]>([]);
+export type AppProps = {
+  loading?: boolean;
+  userNames?: string[];
+};
+
+const Home: React.FC<AppProps> = (props) => {
+  const [loading, setLoading] = useState(props.loading ?? true);
+  const [userNames, setUserNames] = useState(props.userNames ?? []);
 
   useEffect(() => {
     fetch('/api/user-names')
@@ -29,7 +34,7 @@ const Home: React.FC = () => {
   );
 };
 
-export const App: React.FC = () => {
+export const App: React.FC<AppProps> = (props) => {
   return (
     <div>
       <div>
@@ -42,7 +47,7 @@ export const App: React.FC = () => {
       </div>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home {...props} />} />
         <Route path="/login" element={<h1>You can login here</h1>} />
       </Routes>
     </div>
