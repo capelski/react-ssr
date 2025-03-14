@@ -9,6 +9,18 @@ const { App } = require('../ssr/app.js');
 
 const app = express();
 
+const getUserNames = async () => {
+  // Asynchronous method that would retrieve user names from the database.
+  // For the sake of simplicity, mocking the implementation
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+  return ['Barney Stinson', 'Lily Aldrin', 'Marshall Eriksen', 'Robin Scherbatsky', 'Ted Mosby'];
+};
+
+app.get('/api/user-names', async (_req, res) => {
+  const userNames = await getUserNames();
+  res.json(userNames);
+});
+
 app.use([/^\/$/, /^\/login\/?$/], async (req, res) => {
   const appWithRouter = createElement(
     StaticRouter,

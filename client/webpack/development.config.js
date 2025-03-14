@@ -6,5 +6,11 @@ module.exports = merge(baseConfig, {
   devServer: {
     historyApiFallback: true,
     open: true,
+    proxy: [
+      {
+        context: ['/api'],
+        target: 'http://localhost:3000',
+      },
+    ],
   },
 });
