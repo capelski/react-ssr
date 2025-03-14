@@ -1,13 +1,31 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
+import React, { useEffect, useState } from 'react';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
-import { App } from './app';
+import { App, AppProps } from './app';
+
+const AppWithRouter: React.FC<AppProps> = (props) => {
+  const [initialState, setInitialState] = useState<AppProps | undefined>(props);
+
+  useEffect(() => {
+    // After first render, clear the state so components re-fetch data when needed
+    // Otherwise, the same data will be used through out the page lifespan
+    setInitialState(undefined);
+  }, []);
+
+  return (
+    <BrowserRouter>
+      <App {...initialState} />
+    </BrowserRouter>
+  );
+};
 
 const container = document.getElementById('app-placeholder')!;
-const root = createRoot(container);
 
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-);
+if ('initialState' in window) {
+  const initialState = window.initialState as AppProps;
+  hydrateRoot(container, <AppWithRouter {...initialState} />);
+} else {
+  // Used in development mode (i.e. npm run dev)
+  const root = createRoot(container);
+  root.render(<AppWithRouter />);
+}

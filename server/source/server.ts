@@ -34,7 +34,8 @@ app.use([/^\/$/, /^\/login\/?$/], async (req, res) => {
 
   const html = indexHtml.replace(
     '<div id="app-placeholder"></div>',
-    `<div id="app-placeholder">${appHtml}</div>`,
+    `<div id="app-placeholder">${appHtml}</div>
+    <script>window.initialState = ${JSON.stringify(initialState)};</script>`,
   );
 
   res.send(html);

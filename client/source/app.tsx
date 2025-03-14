@@ -11,12 +11,14 @@ const Home: React.FC<AppProps> = (props) => {
   const [userNames, setUserNames] = useState(props.userNames ?? []);
 
   useEffect(() => {
-    fetch('/api/user-names')
-      .then((response) => response.json())
-      .then((userNames) => {
-        setLoading(false);
-        setUserNames(userNames);
-      });
+    if (!props.userNames) {
+      fetch('/api/user-names')
+        .then((response) => response.json())
+        .then((userNames) => {
+          setLoading(false);
+          setUserNames(userNames);
+        });
+    }
   }, []);
 
   return (
