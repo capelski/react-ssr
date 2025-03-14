@@ -6,6 +6,7 @@
 cd client
 npm ci
 npm run build
+npm run build:ssr
 cd ../
 
 cd server

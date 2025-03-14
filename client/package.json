@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "build": "rm -rf ../server/static && webpack --config webpack/production.config.js",
+    "build:ssr": "rm -rf ../server/ssr && webpack --config webpack/ssr.config.js",
     "dev": "webpack serve --config webpack/development.config.js"
   },
   "keywords": [],
@@ -25,6 +26,7 @@
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0",
-    "webpack-merge": "^6.0.1"
+    "webpack-merge": "^6.0.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }
