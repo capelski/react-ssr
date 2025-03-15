@@ -4,8 +4,7 @@ import { resolve } from 'path';
 import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
-
-const { App } = require('../ssr/app.js');
+import { App, AppProps } from '../ssr/app';
 
 const app = express();
 
@@ -23,7 +22,7 @@ app.get('/api/user-names', async (_req, res) => {
 
 app.use([/^\/$/, /^\/login\/?$/], async (req, res) => {
   const userNames = await getUserNames();
-  const initialState = { loading: false, userNames };
+  const initialState: AppProps = { loading: false, userNames };
   const appWithRouter = createElement(
     StaticRouter,
     { location: req.originalUrl },

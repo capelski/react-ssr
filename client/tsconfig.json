@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
@@ -9,6 +10,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
+    "outDir": "../server/ssr",
     "resolveJsonModule": true,
     "rootDir": "./source",
     "skipLibCheck": true,
